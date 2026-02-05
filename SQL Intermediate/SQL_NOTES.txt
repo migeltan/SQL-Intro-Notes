@@ -1,0 +1,49 @@
+TABLE NAMING:
+- Clear
+- Refers to the data
+- Lowercase
+- Underscores
+
+ROWS - RECORDS
+COLUMN - FIELDS
+
+Field naming:
+- lowercase
+- underscores
+- singular
+
+DATA TYPES:
+- numbers
+- names
+- string, int, float
+INT (Whole numbers)
+VARCHAR (String: )
+NUMERIC (floats)
+
+Schema - Blueprints of databases
+
+QUERIES:
+- Questions that needs to be find from the database
+
+WRITING QUERIES:
+Aliasing- renaming columns for clarity
+
+SYNTAX:
+SELECT name, AS first_name
+FROM employees;
+
+SQL FLAVORS:
+
+PostgreSQL - free, open source
+Difference:
+SELECT id, name
+FROM employees
+LIMIT 2;
+
+SQL Server - free and paid
+Difference:
+SELECT TOP (2) id, name
+FROM employees
+
+LIMITING RESULTS- Useful when testing code
+
