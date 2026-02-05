@@ -1,0 +1,207 @@
+SELECT title
+FROM films
+WHERE release_year > 1960; --FILTER CLAUSE, could be other compa oper
+WHERE release_year <> 1960; -- NOT EQUAL TO
+-- > AFTER, < BEFORE , <> NOT EQUAL TO
+
+-- CAN ALSO BE USED WITH STRINGS
+SELECT title
+FROM films
+WHERE country = 'japan'
+
+
+--WITH LIMIT
+SELECT item --2
+FROM coats --1
+WHERE color = 'green' --3
+LIMIT 5; --4
+
+--example
+/*-- Select film_id and facebook_likes for ten records with less than 1000 likes 
+SELECT film_id, facebook_likes
+FROM reviews
+WHERE facebook_likes < 1000
+LIMIT 10;*/
+
+--example using COUNT
+-- Count the records with at least 100,000 votes
+SELECT COUNT(*) AS films_over_100k_votes
+FROM reviews
+WHERE num_votes >= 100000;
+
+--another one
+-- Count the Spanish-language films
+SELECT COUNT(language) AS count_spanish
+FROM films
+WHERE language = 'Spanish';
+
+/*Multiple Criteria filtering
+more than one criteria to meet
+OR, AND, BETWEEN*/
+--FILTERING NUMBERS
+-- OR either is true
+SELECT title
+FROM films
+WHERE release_year = 1994
+OR release_year = 2000;
+
+--AND
+SELECT title
+FROM films
+WHERE release_year > 1994
+AND release_yeer < 1994;
+
+--AND, OR, CERT OF PG OR R
+SELECT title
+FROM films
+WHERE (release_year = 1994 OR release_year = 1995)
+AND (certification = 'PG' OR certification = 'R');
+
+--BETWEEN = EQUIVALENT TO WHERE AND
+SELECT title
+FROM films
+WHERE release_year
+BETWEEN 1994 AND 2000;
+
+--BETWEEN, AND, OR
+SELECT title
+FROM films
+WHERE release_year
+BETWEEN 1994 AND 200 AND country = 'UK';
+
+--examples
+-- Select the title and release_year for all German-language films released before 2000
+SELECT title, release_year
+FROM films
+WHERE release_year < 2000
+AND language = 'German';
+
+--example
+-- Select all records for German-language films released after 2000 and before 2010
+SELECT *
+FROM films
+WHERE release_year > 2000
+AND release_year < 2010
+AND language = 'German';
+
+--example
+SELECT title, release_year
+FROM films
+WHERE release_year BETWEEN 1990 AND 2000
+	AND budget > 100000000
+-- Amend the query to include Spanish or French-language films
+	AND (language = 'Spanish' OR language = 'French');
+
+
+
+
+
+
+/*FILTERING TEXT
+filtering a pattern rather than a specific text
+LIKE, NOT LIKE, IN*/
+
+LIKE 
+--Used to search for a pattern
+-- wildcards: % match zero, one, or many char
+-- _ match a single char
+
+SELECT name
+FROM people
+WHERE name LIKE 'Ade%'; --Adele, adelaide, adeetc.
+WHERE name LIKE 'Ev_'; -- eve, eva, evo
+
+NOT LIKE
+--opposite of LIKE
+SELECT name
+FROM people
+WHERE name NOT LIKE 'A.%' --shows names without A.
+
+--WILDCARD POSITION
+SELECT NAME
+FROM people
+WHERE name LIKE '%r'; --name ends w r (Jaeger)
+WHERE name LIKE '__t%'; --third char is t
+
+IN
+--SAME WITH WHERE, OR SYNTAX
+
+SELECT title
+FROM films
+WHERE release_year IN (1920, 1930, 1940) -- in these dates
+WHERE country IN ('germany', 'france');
+
+--example: LIKE
+SELECT name
+FROM people
+-- Select the names that have r as the second letter
+WHERE name LIKE '_r%'
+
+--example: NOT LIKE
+SELECT name
+FROM people
+-- Select names that don't start with A
+WHERE name NOT LIKE 'A%';
+
+--example: IN
+-- Find the title and release_year for all films over two hours in length released in 1990 and 2000
+SELECT title, release_year
+FROM films
+WHERE release_year IN (1990, 2000) AND duration > 120
+
+--example:mix
+-- Find the title, certification, and language all films certified NC-17 or R that are in English, Italian, or Greek
+SELECT title, certification, language
+FROM films
+WHERE (certification = 'NC-17' OR certification = 'R') AND language IN ('English', 'Italian','Greek');
+
+
+
+
+--application of all:
+--COUNT, DISTINCT, AS, WHERE, BETWEEN, AND, IN
+-- Count the unique titles
+SELECT COUNT(DISTINCT title) AS nineties_english_films_for_teens
+FROM films
+-- Filter to release_years to between 1990 and 1999
+WHERE release_year BETWEEN 1990 AND 1999
+-- Filter to English-language films
+	AND language = 'English'
+-- Narrow it down to G, PG, and PG-13 certifications
+	AND certification IN ('G', 'PG', 'PG-13');
+
+
+
+/*NULL VALUES
+null - unknown value
+- either human error, or unkown
+COUNT(*) AS count_records
+FROM people;
+
+SELECT *
+FROM people
+
+- it would show deathdate, giving null value but still counts it,
+that's why its important to eliminate these values
+
+IS NULL -- checks which does not have the query
+IS NOT NULL -- checks who has query
+*/
+
+SELECT COUNT(*) AS no_birthdates
+FROM people
+WHERE birthdate is NULL; -- shows the ppl w no birthdates
+
+SELECT COUNT (name) AS count_birthdates
+FROM people
+WHERE birthdate IS NOT NULL; -- counts non missing values
+
+--example:
+-- Count the number of films we have language data for
+SELECT COUNT(language) AS count_language_known
+FROM films
+WHERE language IS NOT NULL;
+
+
+
+
