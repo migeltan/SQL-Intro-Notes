@@ -1,0 +1,23 @@
+--no connections
+
+COUNT() --COUNTS THE NUMBER OF RECORDS WITH A VALUE IN A FIELD.
+-- counts number of records with a value in afield
+
+SELECT COUNT(birthdate) AS count_birthdates
+FROM people;
+
+--multiple counts:
+SELECT COUNT (name) AS count_names, COUNT(birthdate) AS count_birthdate
+FROM people;
+
+--total no. of records
+SELECT COUNT(*) AS total_records
+FROM people;
+
+--distinct - unique values
+SELECT DISTINCT language
+FROM people;
+
+--count with distinct
+SELECT COUNT(DISTINCT birthdate) AS count_distinct_birthdate
+FROM people;
