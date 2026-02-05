@@ -1,5 +1,7 @@
 --no connections
 
+COUNT(field_name) --INCLUDES ONLY NON-MISSING VALUES
+COUNT(*) -- INCLUDES MISSING VALUES
 COUNT() --COUNTS THE NUMBER OF RECORDS WITH A VALUE IN A FIELD.
 -- counts number of records with a value in afield
 
@@ -28,4 +30,5 @@ FROM people
 LIMIT 10; --limits return
 
 --SQL style - formatting is not required
+
 
