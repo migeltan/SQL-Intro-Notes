@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-Repository includes intermediate SQL. 
+Notes of SQL with PostgreSQL as flavor. From the intermediate SQL course of DataCamp.
 Tackles the following keywords:
 
 1. COUNT(), LIMIT
@@ -14,6 +13,4 @@ IN, %, _, IS NULL, IS NOT NULL
 
 Learned:
 1. Filtering and Summarizing Data
-=======
-Notes of SQL with PostgreSQL as flavor. From the intermediate SQL course of DataCamp.
->>>>>>> c072834ab16c4f0a8b03ce51158c83b4008729de
+
