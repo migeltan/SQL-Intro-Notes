@@ -1,0 +1,83 @@
+--AGGRERGATE FUNCTIONS
+--COUNT()
+--AVG()
+--SUM()
+--MIN()
+--MAX()
+
+SELECT AVG(budget) --ave budget
+FROM films;
+
+SELECT SUM(budget) --sum
+FROM films;
+
+SELECT MIN(budget) -- lowest/last in alpha
+FROM films;
+
+SELECT MAX(budget) -- highest/first in alpha
+FROM films;
+
+--NON-NUMERICAL FIELDS: AVG(), SUM()
+--VARIOUS DATA TYPES: COUNT(), MIN(), MAX()
+--USE ALIAS WHEN SUMMARIZING DATA
+
+SELECT MIN(country) AS min_country
+FROM films;
+
+--EXAMPLE:
+-- Query the sum of film durations
+SELECT SUM(duration) AS total_duration
+FROM films;
+-- Calculate the average duration of all films
+SELECT AVG(duration) AS average_duration
+FROM films;
+-- Find the latest release_year
+SELECT MAX(release_year) as latest_year
+FROM films;
+-- Find the duration of the shortest film
+SELECT MIN(duration) AS shortest_film
+FROM films;
+
+--SUMMARIZING SUBSETS
+SELECT MAX(budget) AS max_budget
+FROM films
+WHERE release_year = 2010;
+
+SELECT COUNT(budget) AS count_budget
+FROM films
+WHERE release_year = 2010;
+
+--ROUND() - round to a decimal
+--ROUND(number_to_round, decimal_places)
+
+SELECT ROUND(AVG(budget), 2) AS avg_budget
+FROM films
+WHERE release_year >= 2010;
+
+SELECT ROUND(AVG(budget))
+SELECT ROUND(AVG(budget), 0) --ROUND WHOLE NUMBERS
+SELECT ROUND(AVG(budget), -5) AS avg_budget --ROUND TO THE LEFT
+
+--EXAMPLES:
+-- Calculate the average gross of films that start with A
+SELECT AVG(gross) AS avg_gross_A
+FROM films
+WHERE title LIKE 'A%';
+-- Calculate the lowest gross film in 1994
+SELECT MIN(gross) AS lowest_gross
+FROM films
+WHERE release_year = 1994;
+-- Calculate the highest gross film released between 2000-2012
+SELECT MAX(gross) AS highest_gross
+FROM films
+WHERE release_year 
+BETWEEN 2000 AND 2012;
+-- Round the average number of facebook_likes to one decimal place
+SELECT ROUND(AVG(facebook_likes), 1) AS avg_facebook_likes
+FROM reviews;
+-- Calculate the average budget rounded to the thousands
+SELECT ROUND(AVG(budget), -3) AS avg_budget_thousands
+FROM films;
+
+
+
